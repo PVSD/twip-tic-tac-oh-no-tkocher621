@@ -2,7 +2,7 @@ package com.company;
 
 public class TicTacToe {
 
-    private String pMark = "x";
+    public String pMark = "x";
     private String board[][] = new String[3][3];
 
     public TicTacToe()
@@ -12,13 +12,11 @@ public class TicTacToe {
 
     private void InitializeBoard()
     {
-        int count = 1;
         for (int i = 0; i < 3; i++)
         {
             for (int a = 0; a < 3; a++)
             {
                 board[i][a] = "-";
-                count++;
             }
         }
     }
@@ -51,11 +49,24 @@ public class TicTacToe {
             }
         }
         DrawBoard();
+        CheckEnd();
+        ChangePlayer();
     }
 
-    public boolean CheckWin()
+    public boolean CheckEnd()
     {
-
+        for (int i = 0; i < 3; i++)
+        {
+            for (int a = 0; a < 3; a++)
+            {
+                if (!board[i][a].equals(pMark))
+                {
+                    break;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public void ChangePlayer()
