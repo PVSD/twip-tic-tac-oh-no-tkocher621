@@ -2,8 +2,9 @@ package com.company;
 
 public class TicTacToe {
 
-    public String pMark = "x";
+    public String pMark = "o";
     private String board[][] = new String[3][3];
+    // [down][right]
 
     public TicTacToe()
     {
@@ -49,24 +50,24 @@ public class TicTacToe {
             }
         }
         DrawBoard();
-        CheckEnd();
-        ChangePlayer();
+        //CheckEnd();
+        //ChangePlayer();
     }
 
-    public boolean CheckEnd()
+    public boolean CheckEnd() // FIX ME
     {
+        boolean isWin = true;
         for (int i = 0; i < 3; i++)
         {
             for (int a = 0; a < 3; a++)
             {
                 if (!board[i][a].equals(pMark))
                 {
-                    break;
+                    isWin = false;
                 }
-                return true;
             }
         }
-        return false;
+        return isWin;
     }
 
     public void ChangePlayer()
