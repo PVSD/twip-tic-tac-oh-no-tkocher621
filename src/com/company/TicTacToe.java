@@ -56,16 +56,20 @@ public class TicTacToe {
 
     public boolean CheckEnd() // FIX ME
     {
-        boolean isWin = true;
+        boolean isWin = false;
         for (int i = 0; i < 3; i++)
         {
-            for (int a = 0; a < 3; a++)
-            {
-                if (!board[i][a].equals(pMark))
+            //for (int a = 0; a < 3; a++)
+            //{
+                if (board[i][0].equals(pMark) && board[i][1].equals(pMark) && board[i][2].equals(pMark))
                 {
-                    isWin = false;
+                    isWin = true;
                 }
-            }
+                //if (board[i][i].equals(pMark) && board[i][i].equals(pMark) && board[i][i].equals(pMark))
+                //{
+                 //   isWin = true;
+                //}
+            //}
         }
         return isWin;
     }
