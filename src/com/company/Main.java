@@ -10,16 +10,14 @@ public class Main {
     {
         TicTacToe t = new TicTacToe();
         t.DrawBoard();
-
-        System.out.println("Enter a number 1-9 to place your mark.");
-        while (true)
+        // check if anyone has won
+        while (!t.CheckEnd())
         {
-            System.out.println("Player " + ((t.pMark.equals("x")) ? "1" : "2") + "'s turn!");
-
+            t.ChangePlayer();
+            System.out.println("Player " + ((t.pMark.equals("x") ? "1" : "2")) + "'s turn!");
             t.PlaceMark(scan.nextInt());
         }
-
-        //System.out.println("Player " + ((t.pMark.equals("x")) ? "1" : "2") + " wins!");
+        System.out.println("Player " + ((t.pMark.equals("x") ? "1" : "2")) + " wins!");
     }
 
     public static void main(String[] args) {
