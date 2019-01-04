@@ -9,23 +9,59 @@ public class Main {
     public static void PvP()
     {
         TicTacToe t = new TicTacToe();
-        t.DrawBoard();
-        // check if anyone has won
-        while (!t.CheckEnd())
+        while (!t.GameOver)
         {
-            t.ChangePlayer();
-            System.out.println("Player " + ((t.pMark.equals("x") ? "1" : "2")) + "'s turn!");
-            t.PlaceMark(scan.nextInt());
+            if (t.PlaceMark(scan.nextInt()))
+            {
+                t.DrawBoard(false);
+                if (t.CheckEnd())
+                {
+                    t.EndGame();
+                }
+                else
+                {
+                    t.ChangePlayer();
+                    t.AnnounceTurn();
+                }
+            }
         }
-        System.out.println("Player " + ((t.pMark.equals("x") ? "1" : "2")) + " wins!");
     }
 
-    public static void main(String[] args) {
+    public static void PvC()
+    {
+        TicTacToe t = new TicTacToe();
+        while (!t.GameOver)
+        {
+            if (t.PlaceMark(scan.nextInt()))
+            {
+                if (t.CheckEnd())
+                {
+                    t.EndGame();
+                }
+                else
+                {
+                    t.ChangePlayer();
+                    t.AIMove();
+                    t.DrawBoard(false);
+                    if (t.CheckEnd())
+                    {
+                        t.EndGame();
+                    }
+                    else
+                    {
+                        t.ChangePlayer();
+                        t.AnnounceTurn();
+                    }
+                }
+            }
+        }
+    }
 
+    public static void PromptInput()
+    {
         System.out.println("Which mode would you like to play? \n" +
-        "1) Player vs. Player \n" +
-        "2) Player vs. Computer \n" +
-        "3) Computer vs. Computer");
+                "1) Player vs. Player \n" +
+                "2) Player vs. Computer");
 
         String input = scan.nextLine();
 
@@ -36,8 +72,21 @@ public class Main {
                 PvP();
                 break;
             }
+            case "2":
+            {
+                PvC();
+                break;
+            }
+            default:
+            {
+                System.out.println("Invalid option!");
+                PromptInput();
+            }
         }
+    }
 
-
+    public static void main(String[] args)
+    {
+        PromptInput();
     }
 }
